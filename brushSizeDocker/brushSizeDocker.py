@@ -147,6 +147,7 @@ class BrushSizeDocker(DockWidget):
 
     def update_input_from_slider(self, value, index):
         self.size_inputs[index].setText(str(value))
+        self.set_brush_size(index)
 
     
     def canvasChanged(self, canvas):
