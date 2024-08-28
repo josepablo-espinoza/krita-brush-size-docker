@@ -1,0 +1,77 @@
+{
+    "defaultMode": "medium",
+    "modes": {
+        "small": {
+            "label": "Small",
+            "sizes": [
+                1,
+                3,
+                5,
+                8
+            ],
+            "ranges": null,
+            "index": 0,
+            "key": "small"
+        },
+        "medium": {
+            "label": "Medium",
+            "sizes": [
+                10,
+                25,
+                50,
+                80
+            ],
+            "ranges": null,
+            "index": 1,
+            "key": "medium"
+        },
+        "large": {
+            "label": "Large",
+            "sizes": [
+                50,
+                100,
+                400,
+                900
+            ],
+            "ranges": null,
+            "index": 2,
+            "key": "large"
+        },
+        "currentBrush": {
+            "label": "Current brush",
+            "sizes": [],
+            "ranges": null,
+            "index": 3,
+            "key": "currentBrush"
+        },
+        "custom": {
+            "label": "Custom",
+            "sizes": [
+                10,
+                25,
+                50,
+                80
+            ],
+            "ranges": [
+                {
+                    "min": 1,
+                    "max": 40
+                },
+                {
+                    "min": 1,
+                    "max": 75
+                },
+                {
+                    "min": 1,
+                    "max": 150
+                },
+                {
+                    "min": 1,
+                    "max": 580
+                }
+            ],
+            "index": 4,
+            "key": "custom"
+        }
+    }
+}
