@@ -9,12 +9,10 @@ DIR = brushSizeDocker
 all: $(TARGET)
 
 # Zip target
-$(TARGET): $(DIR)/brushSizeDocker.py $(DIR)/__init__.py $(DIR)/Manual.html brushSizeDocker.desktop LICENSE
+$(TARGET): $(DIR)/* brushSizeDocker.desktop LICENSE
 	@echo $(info Creating zip archive...)
 	@mkdir -p tmp/$(DIR)
-	@cp $(DIR)/brushSizeDocker.py tmp/$(DIR)/
-	@cp $(DIR)/__init__.py tmp/$(DIR)/
-	@cp $(DIR)/Manual.html tmp/$(DIR)/
+	@cp $(DIR)/* tmp/$(DIR)/
 	@cp LICENSE tmp/$(DIR)/
 	@cp brushSizeDocker.desktop tmp/
 	@cd tmp && zip -r ../$(TARGET) .
