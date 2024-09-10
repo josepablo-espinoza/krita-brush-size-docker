@@ -1,5 +1,6 @@
 {
     "defaultMode": "medium",
+    "cycleOrientation": true,
     "modes": {
         "small": {
             "label": "Small",

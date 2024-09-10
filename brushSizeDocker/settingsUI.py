@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import (
     QComboBox, QGridLayout, QLabel, QLineEdit, QFrame,
-    QPushButton, QVBoxLayout, QDialog, QHBoxLayout
+    QPushButton, QVBoxLayout, QDialog, QHBoxLayout, QCheckBox
 )
+from PyQt5.QtCore import Qt
 from .settingsService import *
 from .qtExtras import *
 
@@ -24,11 +25,17 @@ class SettingsUI(QDialog):
         self.size_combobox.addItems(self.sv.getDropdown().keys())
         self.size_combobox.setCurrentIndex(self.sv.getDefaultModeInt())
 
-        combo_layout.addWidget(combo_label, 1)
-        combo_layout.addWidget(self.size_combobox, 3)
+        combo_layout.addWidget(combo_label, 0)
+        combo_layout.addWidget(self.size_combobox, 2)
         main_layout.addLayout(combo_layout)
 
         main_layout.addWidget(self.size_combobox)
+
+        #cycle orientation
+        self.cycleOrientationCheckbox = QCheckBox("Cycle Forward?")
+        self.cycleOrientationCheckbox.setCheckState(Qt.Checked if self.sv.getCycleOrientation() else Qt.Unchecked)
+        main_layout.addWidget(self.cycleOrientationCheckbox)
+        
 
         # Custom Sizes Label and Horizontal Line
         custom_sizes_layout = QVBoxLayout()
@@ -113,8 +120,10 @@ class SettingsUI(QDialog):
                 'min': int(inputs['min'].text()),
                 'max': int(inputs['max'].text())
             }
+        
+        cycleOrientationState = (self.cycleOrientationCheckbox.checkState() == Qt.Checked)
 
         # save
-        self.sv.saveSettings(defaultMode, customSettings)
+        self.sv.saveSettings(defaultMode, customSettings, cycleOrientationState)
         
         self.emitCloseDialog()

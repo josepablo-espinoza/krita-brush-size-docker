@@ -15,6 +15,15 @@ class SettingsService():
 
     def getSettings(self):
         return self.settings
+    
+    def setCycleOrientation(self, orientation: bool):
+        self.getSettings()["cycleOrientation"] = orientation
+    
+    '''
+        if true cycles forward
+    '''
+    def getCycleOrientation(self) -> bool:
+        return bool(self.settings["cycleOrientation"])
 
     def setDefaultMode(self, defaultMode: str):
         self.getSettings()["defaultMode"] = defaultMode
@@ -100,9 +109,10 @@ class SettingsService():
         self.getSettings()["modes"]["custom"]["ranges"] = ranges
 
 
-    def saveSettings(self, defaultMode: str, customSettings: dict):
+    def saveSettings(self, defaultMode: str, customSettings: dict, cycleOrientation: bool):
         self.setDefaultMode(defaultMode)
         self.setCustomSettings(customSettings)
+        self.setCycleOrientation(cycleOrientation)
         json_setting = json.dumps(self.getSettings(), indent = 4)
         with open(os.path.dirname(os.path.realpath(__file__)) + '/settings.json', "w") as outfile:
             outfile.write(json_setting)

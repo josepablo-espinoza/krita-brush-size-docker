@@ -9,6 +9,7 @@ from math import floor
 from .settingsService import *
 from .settingsUI import *
 from .qtExtras import *
+from .brushSizeDockerExtension import *
 
 DOCKER_NAME = 'Brush Size Docker'
 
@@ -19,6 +20,8 @@ class BrushSizeDocker(DockWidget):
         self.sv = SettingsService()
         self.setting_dialog = None
         self.setUI()
+        self.currentSizeIndex = 2 # i.e. size 3
+        self.setExtension()
 
     def setUI(self):
         self.widget = QWidget(self)
@@ -87,6 +90,12 @@ class BrushSizeDocker(DockWidget):
 
         # Set initial preset to "Medium"
         self.update_preset()
+
+    def setExtension(self):
+        extension = BrushSizeDockerExtension( parent = Krita.instance() )
+        Krita.instance().addExtension( extension )
+
+        extension.SIGNAL_CYCLE.connect( self.nextBrushSize )
 
     def openDialog(self):
         if self.setting_dialog == None:
@@ -168,6 +177,7 @@ class BrushSizeDocker(DockWidget):
         return None
     
     def set_brush_size(self, index):
+        self.currentSizeIndex = index
         input_value = self.size_inputs[index].text()
         if input_value:
             try:
@@ -185,6 +195,12 @@ class BrushSizeDocker(DockWidget):
         self.size_inputs[index].setText(str(value))
         if not self.presetChange:
             self.set_brush_size(index)
+
+    def nextBrushSize(self):
+        brushQuantity = 4 # not as elegant but good enough TODO use the length of some of the sizes array...
+        orientation = -1 if self.sv.getCycleOrientation() else 1
+        self.currentSizeIndex =  (brushQuantity + (self.currentSizeIndex - orientation)) % brushQuantity
+        self.set_brush_size(self.currentSizeIndex)
 
     
     def canvasChanged(self, canvas):

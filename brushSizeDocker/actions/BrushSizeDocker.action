@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionCollection version="2" name="Scripts">
+    <Actions category="Scripts">
+        <text>Brush Size Docker</text>
+
+        <Action name="cycleBrushSize">
+        <icon></icon>
+        <text>Cycles to the next brush size in the brush size docker</text>
+        <whatsThis>Cycles to the next brush size in the brush size docker</whatsThis>
+        <toolTip>Cycles to the next brush size in the brush size docker</toolTip>
+        <iconText>Next size</iconText>
+        <activationFlags>10000</activationFlags>
+        <activationConditions>0</activationConditions>
+        <shortcut>ctrl+alt+shift+s</shortcut>
+        <isCheckable>false</isCheckable>
+        <statusTip></statusTip>
+        </Action>
+    </Actions>
+</ActionCollection>
