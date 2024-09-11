@@ -20,7 +20,7 @@ The Brush Size Docker plugin allows you to quickly and easily adjust the size of
 - **Size Slider**: Slider to adjust the preset.
 - **User Defined Mode**: Allows the user to define sizes and ranges in the dialog at the top-right of the docker.
 - **Shortcut**: Cycle through the sizes using a user-configurable shortcut, default: Ctrl+Alt+Shift+S.
-- **Configuration panel**: located at the top-right of the docker.
+
 
 
 
